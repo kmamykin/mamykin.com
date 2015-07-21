@@ -6,15 +6,17 @@
 
 var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
-//var metadata = require('metalsmith-metadata');
-var templates = require('metalsmith-templates');
+var layouts = require('metalsmith-layouts');
 
 Metalsmith(__dirname)
   .use(markdown({
     smartypants: true,
     smartLists: true,
   }))
-  .use(templates('handlebars'))
+  .use(layouts({
+    engine: 'handlebars',
+    default: 'site.hbt'
+  }))
   .build(function (err) {
     if (err) return console.error(err);
     console.log("Build completed")
