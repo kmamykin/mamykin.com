@@ -9,6 +9,7 @@ var markdown = require('metalsmith-markdown');
 var layouts = require('metalsmith-layouts');
 var serve = require('metalsmith-serve');
 var watch = require('metalsmith-watch');
+var assets = require('metalsmith-assets');
 
 var isServer = false;
 
@@ -20,7 +21,7 @@ if (isServer) {
   build().use(watch({
     paths: {
       "${source}/**/*": true,
-      "layouts/**/*": "**/*.md"
+      "layouts/**/*": "**/*.{md,html}"
     },
     livereload: false
   })).use(serve({
@@ -39,12 +40,17 @@ if (isServer) {
 
 function build () {
   return Metalsmith(__dirname)
+    .use(assets({
+      source: "./semantic/dist",
+      destination: "./semantic/dist"
+    }))
     .use(markdown({
       smartypants: true,
       smartLists: true,
     }))
     .use(layouts({
       engine: 'handlebars',
-      default: 'site.hbt'
+      default: 'site.hbt',
+      pattern: '**/*.{html,md}'
     }))
 }

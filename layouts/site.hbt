@@ -1,9 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
+    <script src="/semantic/dist/semantic.js"></script>
 </head>
-<body>
+<body class="container">
+
 {{{contents}}}
 </body>
 </html>
