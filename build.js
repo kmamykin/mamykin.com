@@ -7,17 +7,44 @@
 var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var layouts = require('metalsmith-layouts');
+var serve = require('metalsmith-serve');
+var watch = require('metalsmith-watch');
 
-Metalsmith(__dirname)
-  .use(markdown({
-    smartypants: true,
-    smartLists: true,
-  }))
-  .use(layouts({
-    engine: 'handlebars',
-    default: 'site.hbt'
-  }))
-  .build(function (err) {
-    if (err) return console.error(err);
+var isServer = false;
+
+process.argv.forEach(function (val) {
+  if (val === 'server') isServer = true
+});
+
+if (isServer) {
+  build().use(watch({
+    paths: {
+      "${source}/**/*": true,
+      "layouts/**/*": "**/*.md"
+    },
+    livereload: false
+  })).use(serve({
+    port: 8081,
+    verbose: true
+  })).build(function (err) {
+    if (err) throw err;
+    console.log("Watching and Serving")
+  });
+} else {
+  build().build(function (err) {
+    if (err) throw err;
     console.log("Build completed")
   });
+}
+
+function build () {
+  return Metalsmith(__dirname)
+    .use(markdown({
+      smartypants: true,
+      smartLists: true,
+    }))
+    .use(layouts({
+      engine: 'handlebars',
+      default: 'site.hbt'
+    }))
+}
