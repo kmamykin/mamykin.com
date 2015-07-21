@@ -9,7 +9,7 @@ default_username=${GIT_DEPLOY_USERNAME:-kmamykin}
 default_email=${GIT_DEPLOY_EMAIL:-kmamyk@gmail.com}
 
 #repository to deploy to. must be readable and writable.
-repo=${GIT_DEPLOY_REPO:-origin}
+repo=${https://$GITHUB_TOKEN@github.com/kmamykin/mamykin.com.git}
 
 # Parse arg flags
 while : ; do
