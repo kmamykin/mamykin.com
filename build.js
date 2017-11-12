@@ -10,6 +10,9 @@ var layouts = require('metalsmith-layouts');
 var serve = require('metalsmith-serve');
 var watch = require('metalsmith-watch');
 var assets = require('metalsmith-assets');
+var webpack = require('metalsmith-webpack');
+var ignore = require('metalsmith-ignore');
+var path = require('path');
 
 var isServer = false;
 
@@ -43,6 +46,15 @@ function build () {
     .use(assets({
       source: "./semantic/dist",
       destination: "./semantic/dist"
+    }))
+    .use(ignore(['js/*']))
+    .use(webpack({
+      context: path.resolve(__dirname, './src/js/'),
+      entry: './index.js',
+      output: {
+        path: path.resolve(__dirname, './build/js/'),
+        filename: 'bundle.js'
+      }
     }))
     .use(markdown({
       smartypants: true,
