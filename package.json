@@ -3,11 +3,21 @@
   "description": "Personal blog mamykin.com",
   "version": "1.0.0",
   "author": "Kliment Mamykin <kmamyk@gmail.com>",
+  "resolutions": {
+    "gatsby/react": "16.4.1",
+    "gatsby/react-dom": "16.4.1"
+  },
   "dependencies": {
+    "@material-ui/core": "^1.2.3",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
-    "react-helmet": "^5.2.0"
+    "jss": "^9.8.6",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0",
+    "react-jss": "^8.5.1"
   },
   "keywords": [
     "gatsby"
@@ -16,6 +26,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "serve": "gatsby serve",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +34,7 @@
     "prettier": "^1.12.0"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/kmamykin/mamykin.com"
+    "type": "git",
+    "url": "https://github.com/kmamykin/mamykin.com"
   }
 }

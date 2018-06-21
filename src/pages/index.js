@@ -1,8 +1,18 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-const IndexPage = () => (
-  <div>
+import { withStyles } from '@material-ui/core/styles'
+import withRoot from '../withRoot'
+
+const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 20,
+  },
+})
+
+const IndexPage = ({ classes }) => (
+  <div className={classes.root}>
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
@@ -10,4 +20,4 @@ const IndexPage = () => (
   </div>
 )
 
-export default IndexPage
+export default withRoot(withStyles(styles)(IndexPage))

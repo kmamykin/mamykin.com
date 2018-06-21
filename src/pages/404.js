@@ -1,4 +1,13 @@
 import React from 'react'
+import withRoot from '../withRoot'
+import { withStyles } from '@material-ui/core/styles/index'
+
+const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 20,
+  },
+})
 
 const NotFoundPage = () => (
   <div>
@@ -7,4 +16,4 @@ const NotFoundPage = () => (
   </div>
 )
 
-export default NotFoundPage
+export default withRoot(withStyles(styles)(NotFoundPage))
