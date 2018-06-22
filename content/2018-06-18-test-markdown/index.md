@@ -1,7 +1,6 @@
 ---
-path: "/posts/test-markdown"
-date: "2018-07-21"
 title: "Test blog post"
+date: "2018-07-21"
 ---
 
 # Title

@@ -7,12 +7,16 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content`,
-        name: "markdown-pages",
+        name: 'markdown-pages',
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: 'gatsby-transformer-ipynb',
+    },
+    'gatsby-transformer-remark',
+    'gatsby-transformer-json',
   ],
 }

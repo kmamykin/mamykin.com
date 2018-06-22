@@ -13,20 +13,24 @@ const styles = theme => ({
 
 const PostLink = ({ post }) => (
   <div>
-    <Link to={post.frontmatter.path}>
-      {post.frontmatter.title} ({post.frontmatter.date})
+    <Link to={post.fields.path}>
+      ({post.fields.path})
     </Link>
   </div>
-);
+)
 const IndexPage = ({
   classes,
   data: {
-    allMarkdownRemark: { edges },
+    allMarkdownRemark,
+    allJupyterNotebook
   },
 }) => {
-  const Posts = edges
+  const Posts = allMarkdownRemark.edges
     .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
-    .map(edge => <PostLink key={edge.node.id} post={edge.node} />);
+    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+
+  const Notebooks = allJupyterNotebook.edges
+    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
 
   return (
     <div className={classes.root}>
@@ -34,6 +38,7 @@ const IndexPage = ({
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
       <div>{Posts}</div>
+      <div>{Notebooks}</div>
       <Link to="/page-2/">Go to page 2</Link>
     </div>
   )
@@ -47,11 +52,23 @@ export const query = graphql`
       edges {
         node {
           id
+          fields {
+            path
+          }
           excerpt(pruneLength: 250)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
             title
+          }
+        }
+      }
+    }
+    allJupyterNotebook {
+      edges {
+        node {
+          id
+          fields {
+            path
           }
         }
       }

@@ -19,12 +19,14 @@ export default function PostTemplate({ data }) {
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query MarkdownRemarkByPath($path: String!) {
+    markdownRemark(fields: { path: { eq: $path } }) {
       html
+      fields {
+        path
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
       }
     }
