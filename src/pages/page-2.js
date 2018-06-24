@@ -2,13 +2,9 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import { withStyles } from '@material-ui/core/styles'
-import withRoot from '../withRoot'
 
 const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
+  root: {},
 })
 
 const SecondPage = () => (
@@ -19,4 +15,4 @@ const SecondPage = () => (
   </div>
 )
 
-export default withRoot(withStyles(styles)(SecondPage))
+export default withStyles(styles)(SecondPage)

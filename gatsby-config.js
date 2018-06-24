@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Kliment Mamykin',
+    title: 'Kliment Mamykin personal website',
+    author: 'Kliment Mamykin',
     siteUrl: 'https://www.mamykin.com',
     description: 'Personal site',
   },

@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import { withStyles } from '@material-ui/core/styles'
-import withRoot from '../withRoot'
 
 const styles = theme => ({
   root: {
@@ -13,24 +12,20 @@ const styles = theme => ({
 
 const PostLink = ({ post }) => (
   <div>
-    <Link to={post.fields.path}>
-      ({post.fields.path})
-    </Link>
+    <Link to={post.frontmatter.permalink}>({post.frontmatter.title})</Link>
   </div>
 )
 const IndexPage = ({
   classes,
-  data: {
-    allMarkdownRemark,
-    allJupyterNotebook
-  },
+  data: { allMarkdownRemark, allJupyterNotebook },
 }) => {
   const Posts = allMarkdownRemark.edges
     .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
     .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
 
-  const Notebooks = allJupyterNotebook.edges
-    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  const Notebooks = allJupyterNotebook.edges.map(edge => (
+    <PostLink key={edge.node.id} post={edge.node} />
+  ))
 
   return (
     <div className={classes.root}>
@@ -44,21 +39,19 @@ const IndexPage = ({
   )
 }
 
-export default withRoot(withStyles(styles)(IndexPage))
+export default withStyles(styles)(IndexPage)
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMarkdownRemark {
       edges {
         node {
           id
-          fields {
-            path
-          }
-          excerpt(pruneLength: 250)
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            permalink
             title
+            date
+            tags
           }
         }
       }
@@ -67,8 +60,11 @@ export const query = graphql`
       edges {
         node {
           id
-          fields {
-            path
+          frontmatter {
+            permalink
+            title
+            date
+            tags
           }
         }
       }

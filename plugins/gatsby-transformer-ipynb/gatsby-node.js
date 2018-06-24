@@ -1,4 +1,5 @@
 const crypto = require('crypto')
+const { getFrontmatter } = require('./frontmatter')
 
 exports.onCreateNode = async ({
   boundActionCreators: { createNode, createParentChildLink },
@@ -13,11 +14,12 @@ exports.onCreateNode = async ({
     return
   }
 
-  const content = await loadNodeContent(node)
-  const notebook = JSON.parse(content)
+  const rawNotebookBody = await loadNodeContent(node)
+  const notebook = JSON.parse(rawNotebookBody)
+  const frontmatter = getFrontmatter(notebook)
   const contentDigest = crypto
     .createHash('md5')
-    .update(content)
+    .update(rawNotebookBody)
     .digest('hex')
 
   const ipynbNode = {
@@ -26,16 +28,14 @@ exports.onCreateNode = async ({
     parent: node.id,
     internal: {
       type: 'JupyterNotebook',
-      content,
-      contentDigest
+      content: rawNotebookBody,
+      contentDigest,
     },
-    notebook,
-    fileAbsolutePath: node.absolutePath,
-    fileRelativePath: node.relativePath,
-    fileExtension: node.extension
+    frontmatter,
+    rawNotebookBody,
   }
 
-  console.log(`Creating ipynb node from ${node.relativePath}`)
+  console.log(`Creating ipynb node with frontmatter: ${JSON.stringify(frontmatter)}`)
   createNode(ipynbNode)
   createParentChildLink({ parent: node, child: ipynbNode })
 }

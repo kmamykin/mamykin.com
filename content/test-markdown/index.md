@@ -1,6 +1,13 @@
 ---
+permalink: /posts/test-markdown/
 title: "Test blog post"
+author: "Kliment Mamykin"
 date: "2018-07-21"
+categories: 
+  - markdown
+tags: 
+  - markdown
+published: true
 ---
 
 # Title

@@ -1,9 +1,9 @@
 import React from 'react'
 
 // this prop will be injected by the GraphQL query below.
-export default function PostTemplate({ data }) {
+export default function MarkdownArticle({ data }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter, rawMarkdownBody, html } = markdownRemark
   return (
     <div className="blog-post-container">
       <div className="blog-post">
@@ -18,16 +18,16 @@ export default function PostTemplate({ data }) {
   )
 }
 
-export const pageQuery = graphql`
-  query MarkdownRemarkByPath($path: String!) {
-    markdownRemark(fields: { path: { eq: $path } }) {
+export const query = graphql`
+  query MarkdownArticleByPath($path: String!) {
+    markdownRemark(frontmatter: { permalink: { eq: $path } }) {
       html
-      fields {
-        path
-      }
+      rawMarkdownBody
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        permalink
         title
+        date
+        tags
       }
     }
   }
