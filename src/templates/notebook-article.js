@@ -1,22 +1,26 @@
 import React from 'react'
+import Article from '../components/Article'
+import NotebookPreview from '../components/NotebookPreview'
 
 // this prop will be injected by the GraphQL query below.
 export default function NotebookArticle({ data }) {
-  const { jupyterNotebook } = data // data.markdownRemark holds our post data
+  const { jupyterNotebook, site } = data // data.markdownRemark holds our post data
   const { rawNotebookBody, frontmatter } = jupyterNotebook
+  const notebook = JSON.parse(rawNotebookBody)
   return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <pre>
-          <code>{rawNotebookBody}</code>
-        </pre>
-      </div>
-    </div>
+    <Article frontmatter={frontmatter} siteMetadata={site.siteMetadata}>
+      <NotebookPreview notebook={notebook} />
+    </Article>
   )
 }
 
 export const query = graphql`
   query NotebookArticleByPath($path: String!) {
+    site {
+      siteMetadata {
+        author
+      }
+    }
     jupyterNotebook(frontmatter: { permalink: { eq: $path } }) {
       rawNotebookBody
       frontmatter {

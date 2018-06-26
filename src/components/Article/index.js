@@ -7,10 +7,10 @@ const styles = theme => ({
   root: {},
 })
 
-const Article = ({ frontmatter, children }) => (
+const Article = ({ frontmatter, siteMetadata, children }) => (
   <div>
     <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.author}</p>
+    <p>{frontmatter.author || siteMetadata.author}</p>
     <p>{frontmatter.date}</p>
     {children}
   </div>
