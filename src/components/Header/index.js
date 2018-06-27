@@ -29,6 +29,10 @@ const styles = theme => ({
   },
 })
 
+// TODO: Animate header based on page scroll position.
+// https://github.com/fisshy/react-scroll
+// https://github.com/stutrek/scrollmonitor-react, https://github.com/stutrek/scrollMonitor
+// https://github.com/ryanhefner/react-scroll-trigger
 class Index extends React.Component {
   render() {
     const { classes } = this.props
