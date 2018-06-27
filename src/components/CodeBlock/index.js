@@ -1,15 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles/index'
-import Prism from 'prismjs'
+import loadPrism from './loadPrism'
 
-require('prismjs/components/prism-python')
-require('prismjs/components/prism-jsx')
-require('prismjs/themes/prism.css')
-// Code below works but produces webpack warning about require function taking an expression
-// const loadLanguages = require('prismjs/components/index');
-// loadLanguages(['python', 'jsx']);
-// loadLanguages(); // load all
+// need only a single promise that is run when this module is evaluated
+const prismLoaded = loadPrism({ theme: 'prism-tomorrow'})
 
 const styles = theme => ({
   root: {
@@ -44,8 +39,9 @@ class CodeBlock extends React.Component {
 
   highlight = () => {
     const node = this.elementRef.current
-    console.log('Highlighting with Prism')
-    Prism.highlightElement(node, this.props.async)
+    prismLoaded.then((Prism) => {
+      Prism.highlightElement(node, this.props.async)
+    })
   }
 
 
