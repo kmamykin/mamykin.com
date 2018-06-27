@@ -1,40 +1,28 @@
 import React from 'react'
-import Link from 'gatsby-link'
-
+import ArticleCard from '../components/ArticleCard'
 import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
   },
+  card: {}
 })
 
-const PostLink = ({ post }) => (
-  <div>
-    <Link to={post.frontmatter.permalink}>({post.frontmatter.title})</Link>
-  </div>
-)
-const IndexPage = ({
-  classes,
-  data: { allMarkdownRemark, allJupyterNotebook },
-}) => {
-  const Posts = allMarkdownRemark.edges
-    .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
-    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
-
-  const Notebooks = allJupyterNotebook.edges.map(edge => (
-    <PostLink key={edge.node.id} post={edge.node} />
+const IndexPage = ({ classes, data }) => {
+  const { allMarkdownRemark, allJupyterNotebook, site } = data
+  const edges = [...allMarkdownRemark.edges, ...allJupyterNotebook.edges]
+  const cards = edges.map(({node}) => (
+    <Grid item xs={12}>
+      <ArticleCard key={node.id} frontmatter={node.frontmatter} siteMetadata={site.siteMetadata} />
+    </Grid>
   ))
 
   return (
     <div className={classes.root}>
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div>{Posts}</div>
-      <div>{Notebooks}</div>
-      <Link to="/page-2/">Go to page 2</Link>
+      <Grid container spacing={24}>
+        {cards}
+      </Grid>
     </div>
   )
 }
@@ -43,6 +31,11 @@ export default withStyles(styles)(IndexPage)
 
 export const query = graphql`
   query IndexQuery {
+    site {
+      siteMetadata {
+        author
+      }
+    }
     allMarkdownRemark {
       edges {
         node {

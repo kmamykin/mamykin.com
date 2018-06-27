@@ -5,10 +5,8 @@ import withRoot from '../withRoot'
 import MathJax from '../components/MathJax'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Paper from '@material-ui/core/Paper'
 import AppBar from '@material-ui/core/AppBar'
 import { withStyles } from '@material-ui/core/styles/index'
-import cn from 'classnames'
 
 const ResponsiveContainer = withStyles(theme => ({
   root: {
@@ -30,8 +28,8 @@ const styles = theme => ({
   root: {
   },
   content: {
-    marginTop: '64px',
-    padding: '24px',
+    // marginTop: '64px',
+    marginTop: '88px',
   },
   footer: {
     padding: '40px 24px',
@@ -52,9 +50,9 @@ const Layout = ({ children, data, classes }) => (
       </ResponsiveContainer>
     </AppBar>
     <ResponsiveContainer>
-      <Paper className={classes.content} elevation={1} square={true}>
+      <div className={classes.content}>
         <MathJax.Context>{children()}</MathJax.Context>
-      </Paper>
+      </div>
     </ResponsiveContainer>
     <ResponsiveContainer>
       <div className={classes.footer}>
