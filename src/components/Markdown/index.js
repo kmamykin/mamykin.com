@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import MarkdownRender from '@nteract/markdown'
-import HighligtedCode from '../HighlightedCode'
+import CodeBlock from '../CodeBlock'
 import Image from '../Image'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -42,7 +42,7 @@ const createRenderers = ({ classes }) => ({
     </Typography>
   ),
   code: ({ language, value }) => (
-    <HighligtedCode language={language}>{value}</HighligtedCode>
+    <CodeBlock language={language}>{value}</CodeBlock>
   ),
   list: ({ children, ordered, ...rest }) => (
     <Typography

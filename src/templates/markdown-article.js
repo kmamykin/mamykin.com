@@ -25,7 +25,7 @@ export const query = graphql`
       frontmatter {
         permalink
         title
-        date
+        date(formatString: "MMMM Do, YYYY")
         tags
       }
     }

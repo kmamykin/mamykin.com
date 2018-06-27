@@ -14,13 +14,13 @@ const styles = theme => ({
 })
 
 const Article = ({ frontmatter, siteMetadata, classes, children }) => (
-  <Paper className={classes.root} elevation={1} square={true}>
+  <Paper className={classes.root} elevation={2} square={true}>
     <div className={classes.frontmatter}>
       <Typography variant="display2" component="h1" paragraph>
         {frontmatter.title}
       </Typography>
       <Typography variant="subheading">
-        <span>By </span>
+        <span>by </span>
         <span>{frontmatter.author || siteMetadata.author}</span>
         <span> </span>
         <span>{frontmatter.date}</span>

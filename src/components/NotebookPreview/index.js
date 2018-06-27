@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import HighligtedCode from '../HighlightedCode'
+import CodeBlock from '../CodeBlock'
 import Markdown from '../Markdown'
 import Image from '../Image'
 import { renderNotebook } from './renderNotebook'
@@ -25,7 +25,7 @@ class NotebookPreview extends React.Component {
           <div className={classes.cells}>{children}</div>
         ),
         code: ({ language, source }) => (
-          <HighligtedCode language={language}>{source}</HighligtedCode>
+          <CodeBlock language={language}>{source}</CodeBlock>
         ),
         markdown: ({ source }) => <Markdown source={source} />,
         stream: ({ children }) => <pre>{children}</pre>,
@@ -39,9 +39,9 @@ class NotebookPreview extends React.Component {
           />
         ),
         json: ({ json }) => (
-          <HighligtedCode language="json">
+          <CodeBlock language="json">
             {JSON.stringify(json, null, 2)}
-          </HighligtedCode>
+          </CodeBlock>
         ),
       },
       notebook
