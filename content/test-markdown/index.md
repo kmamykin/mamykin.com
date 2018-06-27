@@ -40,7 +40,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     1. List 2
     2. List 2
 
-
 1. One
 2. Two 
 3. Three

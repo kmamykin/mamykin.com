@@ -1,30 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles/index";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles/index'
 
 const styles = theme => ({
   root: {
-    display: "block",
   },
   img: {
-    maxWidth: "100%",
-  }
-});
+    maxWidth: '100%',
+  },
+})
 
 class Image extends React.Component {
   static propTypes = {
-    src: PropTypes.string
-  };
+    src: PropTypes.string,
+  }
 
   render() {
-    const { src, classes, ...rest } = this.props;
+    const { src, classes, ...rest } = this.props
 
     return (
-      <div className={classes.root} >
+      <div className={classes.root}>
         <img className={classes.img} src={src} {...rest} />
       </div>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(Image);
+export default withStyles(styles)(Image)

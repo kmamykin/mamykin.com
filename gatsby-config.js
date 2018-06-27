@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Kliment Mamykin personal website',
+    title: 'Kliment Mamykin',
     author: 'Kliment Mamykin',
     siteUrl: 'https://www.mamykin.com',
-    description: 'Personal site',
+    description: 'Kliment Mamykin personal site',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

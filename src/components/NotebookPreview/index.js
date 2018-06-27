@@ -2,6 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import HighligtedCode from '../HighlightedCode'
 import Markdown from '../Markdown'
+import Image from '../Image'
 import { renderNotebook } from './renderNotebook'
 
 const styles = theme => ({
@@ -28,7 +29,7 @@ class NotebookPreview extends React.Component {
         ),
         markdown: ({ source }) => <Markdown source={source} />,
         stream: ({ children }) => <pre>{children}</pre>,
-        image: props => <img {...props} />,
+        image: props => <Image {...props} />,
         text: props => <pre {...props} />,
         html: ({ html }) => (
           <div

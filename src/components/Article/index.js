@@ -1,18 +1,29 @@
 import React from 'react'
-import Link from 'gatsby-link'
-
+import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {},
+  frontmatter: {},
+  content: {
+    marginTop: '10px',
+  },
 })
 
-const Article = ({ frontmatter, siteMetadata, children }) => (
-  <div>
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.author || siteMetadata.author}</p>
-    <p>{frontmatter.date}</p>
-    {children}
+const Article = ({ frontmatter, siteMetadata, classes, children }) => (
+  <div className={classes.root}>
+    <div className={classes.frontmatter}>
+      <Typography variant="display2" component="h1" paragraph>
+        {frontmatter.title}
+      </Typography>
+      <Typography variant="subheading">
+        <span>By </span>
+        <span>{frontmatter.author || siteMetadata.author}</span>
+        <span> </span>
+        <span>{frontmatter.date}</span>
+      </Typography>
+    </div>
+    <div className={classes.content}>{children}</div>
   </div>
 )
 

@@ -39,19 +39,6 @@ class FrontPageLayout extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Container>
-            <Toolbar classes={{ gutters: classes.gutters }}>
-              <Typography
-                variant="title"
-                color="inherit"
-                className={classes.flex}
-              >
-                Kliment Mamykin's blog
-              </Typography>
-            </Toolbar>
-          </Container>
-        </AppBar>
         <Container>
           <Grid container spacing={8}>
             <Grid item xs={12} md={9}>
