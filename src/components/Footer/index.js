@@ -1,9 +1,9 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles/index'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
-  root: {
-  },
+  root: {},
 })
 
 class Footer extends React.Component {
@@ -11,9 +11,9 @@ class Footer extends React.Component {
     const { classes } = this.props
 
     return (
-      <div className={classes.root}>
+      <Typography className={classes.root}>
         Copyright © 2008 Kliment Mamykin
-      </div>
+      </Typography>
     )
   }
 }
