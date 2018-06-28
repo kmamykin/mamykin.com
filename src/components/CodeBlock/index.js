@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles/index'
 import loadPrism from './loadPrism'
 
 // need only a single promise that is run when this module is evaluated
-const prismLoaded = loadPrism({ theme: 'prism-tomorrow'})
+const prismLoaded = loadPrism({ theme: 'prism-coy'})
 
 const styles = theme => ({
   root: {
