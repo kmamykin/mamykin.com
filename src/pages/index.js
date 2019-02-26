@@ -14,11 +14,11 @@ export default ({ data }) => (
     <Link to="/page-2/">Go to page 2</Link>
     <Link to="/about/">About</Link>
 
-    <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-    {data.allMarkdownRemark.edges.map(({ node }) => (
+    <h4>{data.allPost.totalCount} Posts</h4>
+    {data.allPost.edges.map(({ node }) => (
       <div key={node.id}>
         <Link
-          to={node.fields.slug}
+          to={node.frontmatter.path}
           css={css`text-decoration: none; color: inherit;`}
         >
           <h3 css={css`margin-bottom: ${rhythm(1 / 4)};`}>
@@ -27,7 +27,7 @@ export default ({ data }) => (
               — {node.frontmatter.date}
             </span>
           </h3>
-          <p>{node.excerpt}</p>
+          <p>{node.content.excerpt}</p>
         </Link>
       </div>
     ))}
@@ -36,19 +36,20 @@ export default ({ data }) => (
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allPost(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
         node {
           id
           frontmatter {
             title
+            slug
+            path
             date(formatString: "DD MMMM, YYYY")
           }
-          fields {
-            slug
+          content {
+            excerpt
           }
-          excerpt
         }
       }
     }
