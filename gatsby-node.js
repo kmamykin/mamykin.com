@@ -32,7 +32,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
           .createHash(`md5`)
           .update(JSON.stringify(node.rawMarkdownBody))
           .digest(`hex`),
-        mediaType: node.internal.mediaType,
       },
     }
     createNode(postNode)
@@ -61,9 +60,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         type: `Post`,
         contentDigest: crypto
           .createHash(`md5`)
-          .update(JSON.stringify(node.html))
+          .update(node.internal.content)
           .digest(`hex`),
-        mediaType: node.internal.mediaType,
       },
     }
     createNode(postNode)
