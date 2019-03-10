@@ -22,7 +22,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         date: node.frontmatter.date,
       },
       content: {
-        html: node.html,
+        type: 'Markdown',
         markdown: node.rawMarkdownBody,
         excerpt: node.excerpt,
       },
@@ -53,7 +53,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         date: '2019-01-01',
       },
       content: {
-        html: node.html,
+        type: 'Notebook',
         notebook: node.internal.content,
         excerpt: 'Excerpt here'
       },
@@ -75,8 +75,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-
   const results = await graphql(`
     {
       allPost {
@@ -92,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   results.data.allPost.edges.forEach(({ node }) => {
-    createPage({
+    actions.createPage({
       path: node.frontmatter.path,
       component: path.resolve(`./src/templates/blog-post.js`),
       context: {
