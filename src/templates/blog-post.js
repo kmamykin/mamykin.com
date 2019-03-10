@@ -1,8 +1,8 @@
 import React from "react"
-import Layout from "../components/layout"
-import Notebook from "../components/notebook"
-import Markdown from "../components/markdown"
 import { graphql } from "gatsby"
+import Layout from "../components/Layout"
+import Notebook from "../components/Notebook"
+import Markdown from "../components/Markdown"
 
 export default ({ data }) => {
   const post = data.post
