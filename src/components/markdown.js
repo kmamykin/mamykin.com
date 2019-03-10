@@ -1,10 +1,11 @@
 import React from "react"
+import MarkdownRender from "@nteract/markdown"
 
 export default ({ markdown, frontmatter }) => {
   return (
-    <pre>
-      {JSON.stringify(frontmatter, null,2)}
-      {markdown}
-    </pre>
+    <MarkdownRender
+      source={markdown}
+      renderers={{}}
+    />
   )
 }

@@ -2,7 +2,7 @@ const crypto = require('crypto')
 const { getFrontmatter } = require('./frontmatter')
 
 exports.onCreateNode = async ({
-  boundActionCreators: { createNode, createParentChildLink },
+  actions: { createNode, createParentChildLink },
   loadNodeContent,
   node,
 }) => {

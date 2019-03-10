@@ -963,10 +963,23 @@
     "@nteract/mathjax" "^3.0.5-alpha.0"
     react-markdown "^4.0.0"
 
+"@nteract/markdown@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@nteract/markdown/-/markdown-4.0.0.tgz#bdec6b71c588e534f6addbb55a2e2a257877d9f6"
+  integrity sha512-Zn5RdFZZLXkDFpsJCQOugYAIHvOCk1ZsKojDO096r39Giu8eyZxf6dV13YWqiSMK6KDXmI92rBW0wa1et/q7bQ==
+  dependencies:
+    "@nteract/mathjax" "^4.0.0"
+    react-markdown "^4.0.0"
+
 "@nteract/mathjax@^3.0.5-alpha.0":
   version "3.0.5-alpha.0"
   resolved "https://registry.yarnpkg.com/@nteract/mathjax/-/mathjax-3.0.5-alpha.0.tgz#f89647928e814266a388463a1910d73b3a2be569"
   integrity sha512-E4/GnLRM6bX79sEVLZrOfPoBvhqewH/wpYZvn0KX8GLZPGFxHGQ+Ftjz4i0pg5S7RmPSDAhfL1C+/rYGFD+ksA==
+
+"@nteract/mathjax@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@nteract/mathjax/-/mathjax-4.0.0.tgz#c3a8c04cc23fe590768f58742f7c8cdc870b0451"
+  integrity sha512-k5aNDPE6k724UWznhRX+ZTih2xfSHLnaEf3btA42dv/rorPs7BtW/4qDdP5s0dVlYV9PrX9vAyAUdZNUbXZq1Q==
 
 "@nteract/notebook-render@^5.0.4-alpha.0":
   version "5.0.4-alpha.0"
