@@ -4,6 +4,7 @@ import Layout from "../components/Layout"
 import Notebook from "../components/Notebook"
 import Markdown from "../components/Markdown"
 
+// const Notebook = (props) => <div></div>
 export default ({ data }) => {
   const post = data.post
   return (

@@ -1,26 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles/index'
-import loadPrism from './loadPrism'
 
 // need only a single promise that is run when this module is evaluated
-const prismLoaded = loadPrism({ theme: 'prism-coy'})
-
-const styles = theme => ({
-  root: {
-    marginLeft: '-24px',
-    marginRight: '-24px',
-  },
-})
+const prismLoaded = import('./prismjs')
 
 class CodeBlock extends React.Component {
   static propTypes = {
     language: PropTypes.string,
+    inline: PropTypes.bool,
     children: PropTypes.node.isRequired,
     async: PropTypes.bool
   }
 
   static defaultProps = {
+    inline: false,
+    language: 'markup',
     async: false
   }
 
@@ -39,26 +33,31 @@ class CodeBlock extends React.Component {
 
   highlight = () => {
     const node = this.elementRef.current
-    prismLoaded.then((Prism) => {
+    prismLoaded.then(({ Prism }) => {
       Prism.highlightElement(node, this.props.async)
     })
   }
 
 
   render() {
-    const { language, classes, children } = this.props
-    // See https://cdnjs.com/libraries/prism for available libs
-    return (
-      <div className={classes.root}>
-        <pre>
-          <code ref={this.elementRef} className={`language-${language}`}>{children}</code>
-        </pre>
-      </div>
-    )
+    const { language, inline, children } = this.props
+    if (inline) {
+      return (
+        <code ref={this.elementRef} className={`language-${language}`}>{children}</code>
+      )
+    } else {
+      return (
+        <div>
+          <pre>
+            <code ref={this.elementRef} className={`language-${language}`}>{children}</code>
+          </pre>
+        </div>
+      )
+    }
   }
 }
 
-export default withStyles(styles)(CodeBlock)
+export default CodeBlock
 
 /*
 *
