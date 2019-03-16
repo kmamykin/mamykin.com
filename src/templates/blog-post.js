@@ -11,16 +11,10 @@ export default ({ data }) => {
       <div>
         <h1>{post.frontmatter.title}</h1>
         {post.content.type === "Notebook" && (
-          <Notebook
-            frontmatter={post.frontmatter}
-            notebook={JSON.parse(post.content.notebook)}
-          />
+          <Notebook notebook={JSON.parse(post.content.notebook)} />
         )}
         {post.content.type === "Markdown" && (
-          <Markdown
-            frontmatter={post.frontmatter}
-            markdown={post.content.markdown}
-          />
+          <Markdown markdown={post.content.markdown} />
         )}
       </div>
     </Layout>
