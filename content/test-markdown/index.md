@@ -44,6 +44,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 2. Two 
 3. Three
 
+## Image test
+
+![large image 1](test-markdown/ramiro-martinez-1317998-unsplash.jpg "Logo Title Text 1")
+
+![large image 2](test-markdown/tom-grimbert-tomgrimbert-1349885-unsplash.jpg "Logo Title Text 2")
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
 ## MathJax test
 
 Some formula inline $E(a*X + b) = a*E(X) + b$

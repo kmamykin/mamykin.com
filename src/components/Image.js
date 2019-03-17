@@ -12,21 +12,40 @@ import Img from "gatsby-image"
  * - `gatsby-image`: https://gatsby.app/gatsby-image
  * - `StaticQuery`: https://gatsby.app/staticquery
  */
-
-const Image = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+// sourceInstanceName in the query refers to the name option in the configuration of gatsby-source-filesystem plugin
+const allContentImages = graphql`
+  query {
+    allFile(
+      filter: {
+        extension: { regex: "/(jpeg|jpg|png)/" }
+        sourceInstanceName: { eq: "content" }
+      }
+    ) {
+      edges {
+        node {
+          relativePath
           childImageSharp {
-            fluid(maxWidth: 300) {
+            fluid(maxWidth: 960) {
               ...GatsbyImageSharpFluid
             }
           }
         }
       }
-    `}
-    render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} />}
+    }
+  }
+`
+const Image = ({ alt, title, src }) => (
+  <StaticQuery
+    query={allContentImages}
+    render={data => {
+      const foundImage = data.allFile.edges.map(n => n.node).find(n => n.relativePath === src)
+      if (foundImage) {
+        return <Img fluid={foundImage.childImageSharp.fluid} Tag={'div'}/>
+      } else {
+        // image src is not in the list of content images, render as <img> tag
+        return <img alt={alt} title={title} src={src}/>
+      }
+    }}
   />
 )
 export default Image

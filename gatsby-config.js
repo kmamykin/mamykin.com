@@ -18,15 +18,15 @@ module.exports = {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: `content`,
+        path: `${__dirname}/content/`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -37,13 +37,6 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `content`,
-        path: `${__dirname}/content/`,
       },
     },
     {
@@ -58,7 +51,8 @@ module.exports = {
         // GitHub Flavored Markdown mode (default: true)
         gfm: true,
         // Plugins configs
-        plugins: [],
+        plugins: [
+        ],
       },
     },
     `gatsby-transformer-ipynb`, // this is a local plugin
