@@ -61,7 +61,7 @@ module.exports = {
         plugins: [],
       },
     },
-    `gatsby-transformer-ipynb`,
+    `gatsby-transformer-ipynb`, // this is a local plugin
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
