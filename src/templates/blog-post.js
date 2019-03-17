@@ -10,7 +10,6 @@ export default ({ data }) => {
   return (
     <Layout>
       <div>
-        <h1>{post.frontmatter.title}</h1>
         {post.content.type === "Notebook" && (
           <Notebook notebook={JSON.parse(post.content.notebook)} />
         )}

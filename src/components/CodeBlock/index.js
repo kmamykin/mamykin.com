@@ -1,15 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { css } from "@emotion/core"
 
 // need only a single promise that is run when this module is evaluated
 const prismLoaded = import("./prismjs")
-
-const inlineFix = css`
-  code[class*="language-"]& {
-    padding: 0.1em 0.4em;
-  }
-`
 
 export default class CodeBlock extends React.Component {
   static propTypes = {
@@ -21,7 +14,7 @@ export default class CodeBlock extends React.Component {
 
   static defaultProps = {
     inline: false,
-    language: "markup",
+    language: `markup`,
     async: false,
   }
 
@@ -49,7 +42,11 @@ export default class CodeBlock extends React.Component {
     const { language, inline, children } = this.props
     if (inline) {
       return (
-        <code ref={this.elementRef} className={`language-${language}`} css={inlineFix}>
+        <code
+          ref={this.elementRef}
+          className={`language-${language}`}
+          style={{ padding: `0.1em 0.4em` }}
+        >
           {children}
         </code>
       )
