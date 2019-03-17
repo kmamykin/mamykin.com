@@ -1,32 +1,45 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
+import { css } from "@emotion/core"
+import { rhythm } from "../utils/typography"
+import Headroom from "react-headroom"
+import Container from "./Container"
 
 const Header = ({ siteTitle }) => (
-  <header
+  <Headroom
+    wrapperStyle={{ marginBottom: rhythm(1) }}
     style={{
-      marginBottom: `1.45rem`,
+      background: 'rgb(57, 111, 176)',
+      boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.25)'
     }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            textDecoration: `none`,
-          }}
+    <Container>
+      <div
+        css={css`
+          padding: 0.75rem 0;
+        `}
+      >
+        <h2
+          css={css`
+            margin: 0;
+          `}
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+          <Link
+            to="/"
+            css={css`
+              text-decoration: none;
+              text-shadow: none;
+              background-image: none;
+              color: white;
+            `}
+          >
+            {siteTitle}
+          </Link>
+        </h2>
+      </div>
+    </Container>
+  </Headroom>
 )
 
 Header.propTypes = {
