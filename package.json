@@ -8,6 +8,7 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "@nteract/markdown": "^4.0.0",
+    "@nteract/mathjax": "^4.0.0",
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-emotion": "^4.0.4",

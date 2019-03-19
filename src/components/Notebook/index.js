@@ -12,7 +12,9 @@ export default ({ notebook }) => {
       code: ({ language, source }) => (
         <CodeBlock language={language}>{source}</CodeBlock>
       ),
-      markdown: ({ source }) => <Markdown source={source} />,
+      markdown: ({ source }) => {
+        return <Markdown markdown={source} />
+      },
       stream: ({ children }) => <pre>{children}</pre>,
       image: props => <Image {...props} />,
       text: props => <pre {...props} />,

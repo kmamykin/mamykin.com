@@ -44,6 +44,41 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 2. Two 
 3. Three
 
+## MathJax test
+
+Some formula inline $E(a*X + b) = a*E(X) + b$
+
+$$
+\begin{equation}
+    X = \sum_{i=1}^{N} x_i
+\end{equation}
+$$
+
+Alpha: $\alpha A$, Beta: $\beta B$, Gamma: $\gamma \Gamma$  and some other symbols $\int \oint \sum \prod$ and in some sentences $n$ instances may be distributed into 
+$m$ bins according to a total nonsense $x_i \sim N(\mu, \sigma^2)$.
+
+In physics, the mass-energy equivalence is stated by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+In natural units ($c$ = 1), the formula expresses the identity
+$$ 
+\begin{equation}
+    E=m
+    \tag{1}
+\end{equation}
+$$
+
+In equation $\eqref{eq:2}$ does not work: MathJax node processing is hidden in @nteract/mathjax Node class 
+with no way to hook into that processing. 
+AMS automatic equation numbering also does not quite work as it is stateful (MathJax remembers tags and labels),
+but React component render multiple times breaking MathJax with error that same label is already defined.
+The only option is manual taging with `\tag{1}` command. No automatic links with `\eqref` work.
+
+$$
+\begin{equation}
+    \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+    \tag{2}
+\end{equation}
+$$
+
 ## Image test
 
 ![large image 1](test-markdown/ramiro-martinez-1317998-unsplash.jpg "Logo Title Text 1")
@@ -52,13 +87,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
-## MathJax test
-
-Some formula inline $E(a*X + b) = a*E(X) + b$
-
-$$
-X = \sum_{i=1}^{N} x_i
-$$
 
 ## Inline code snippets
 
@@ -183,6 +211,8 @@ React.render(
 
 Pretty neat, eh?
 
+---------------
+
 ## Tables?
 
 | Feature   | Support |
@@ -195,4 +225,3 @@ Pretty neat, eh?
 
 Read usage information and more on [GitHub](//github.com/rexxars/react-markdown)
 
----------------
