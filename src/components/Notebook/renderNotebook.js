@@ -53,6 +53,7 @@ export const renderNotebook = (renderers, notebook) => {
           children: [textProp(output)],
         })
       case 'display_data':
+      case 'execute_result':
       case 'execute_results':
         // the structure under 'data' key is called mime-bundle in the docs
         // const executionCount = R.prop('execution_count', output)

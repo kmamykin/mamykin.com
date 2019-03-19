@@ -3,12 +3,22 @@ import CodeBlock from "../CodeBlock"
 import Markdown from "../Markdown"
 import Image from "../Image"
 import { renderNotebook } from "./renderNotebook"
+import { css } from "@emotion/core"
 
+const OutputImage = (props) => (
+  <div css={css`
+    display: flex;
+    justify-content: center;
+  `}>
+    <Image {...props} />
+  </div>
+)
 export default ({ notebook }) => {
   return renderNotebook(
     {
       root: ({ children }) => <div>{children}</div>,
       cells: ({ children }) => <div>{children}</div>,
+      cell: ({ children, collapsed, autoscroll }) => <div>{children}</div>,
       code: ({ language, source }) => (
         <CodeBlock language={language}>{source}</CodeBlock>
       ),
@@ -16,7 +26,7 @@ export default ({ notebook }) => {
         return <Markdown markdown={source} />
       },
       stream: ({ children }) => <pre>{children}</pre>,
-      image: props => <Image {...props} />,
+      image: OutputImage,
       text: props => <pre {...props} />,
       html: ({ html }) => (
         <div
