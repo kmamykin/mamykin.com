@@ -58,24 +58,28 @@ Alpha: $\alpha A$, Beta: $\beta B$, Gamma: $\gamma \Gamma$  and some other symbo
 $m$ bins according to a total nonsense $x_i \sim N(\mu, \sigma^2)$.
 
 In physics, the mass-energy equivalence is stated by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
-In natural units ($c$ = 1), the formula expresses the identity
+
 $$ 
 \begin{equation}
-    E=m
-    \tag{1}
+    E=m^2
+    \label{eq:einstein}
 \end{equation}
 $$
 
-In equation $\eqref{eq:2}$ does not work: MathJax node processing is hidden in @nteract/mathjax Node class 
-with no way to hook into that processing. 
+References to equation $\eqref{eq:einstein}$ doe not work: MathJax node processing is hidden in @nteract/mathjax Node class 
+with no way to hook into that processing. However, setting `skipStartupTypeset: true` in MathJax options seems to 
+prevent the first auto-typesetting when the script loads and $\eqref{eq:eq2}$ seems to work again 
+(ref displayed but clicking the link breaks MathJax on the page). `\eqref` is not usable.
 AMS automatic equation numbering also does not quite work as it is stateful (MathJax remembers tags and labels),
 but React component render multiple times breaking MathJax with error that same label is already defined.
 The only option is manual taging with `\tag{1}` command. No automatic links with `\eqref` work.
 
+Regular ([ref to Einstein](#mjx-eqn-2)) references have to use `#mjx-eqn-2` links
+
 $$
 \begin{equation}
     \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
-    \tag{2}
+    \label{eq:eq2}
 \end{equation}
 $$
 
