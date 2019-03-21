@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { css } from "@emotion/core"
+import {rhythm} from "../../utils/typography"
 
 // need only a single promise that is run when this module is evaluated
 const prismLoaded = import("./prismjs")
@@ -52,8 +54,8 @@ export default class CodeBlock extends React.Component {
       )
     } else {
       return (
-        <div>
-          <pre>
+        <div css={css`margin-bottom: ${rhythm(1)};`}>
+          <pre style={{ margin: `0` }}>
             <code ref={this.elementRef} className={`language-${language}`}>
               {children}
             </code>
