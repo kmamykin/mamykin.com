@@ -3,9 +3,9 @@ import CodeBlock from "./CodeBlock"
 import Image from "./Image"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
-// Only use this plugin from @nteract/markdown package
-import RemarkMathPlugin from "@nteract/markdown/lib/remark-math";
-import ReactMarkdown from "react-markdown";
+import RemarkMath from "remark-math"
+import ReactMarkdown from "react-markdown"
+import { InlineMath, BlockMath } from "./KaTeX"
 
 const MarkdownCode = ({ language, value }) => (
   <CodeBlock language={language}>{value}</CodeBlock>
@@ -24,18 +24,19 @@ const MarkdownImage = ({ alt, title, src }) => (
 // Need to use div instead of p because of images rendered
 // using gatsby-image use div as a wrapper, and p > div is invalid HTML
 const MarkdownParagraph = ({ children }) => (
-  <div css={css`padding: 0; margin: 0 0 ${rhythm(1)} 0;`}>
+  <div
+    css={css`
+      padding: 0;
+      margin: 0 0 ${rhythm(1)} 0;
+    `}
+  >
     {children}
   </div>
 )
 
-const MarkdownMath = ({ value }) => (
-  <p>$${value}$$</p>
-);
+const MarkdownMath = ({ value }) => <BlockMath math={value}/>
 
-const MarkdownInlineMath = ({ value }) => (
-  <span>${value}$</span>
-);
+const MarkdownInlineMath = ({ value }) => <InlineMath math={value}/>
 
 // https://github.com/rexxars/react-markdown#node-types for the list of all renderers
 export default ({ markdown }) => {
@@ -43,7 +44,7 @@ export default ({ markdown }) => {
     <ReactMarkdown
       source={markdown}
       escapeHtml={false}
-      plugins={[RemarkMathPlugin]}
+      plugins={[RemarkMath]}
       renderers={{
         code: MarkdownCode,
         inlineCode: MarkdownInlineCode,

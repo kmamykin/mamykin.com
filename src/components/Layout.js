@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./Header"
 import Container from "./Container"
 import Footer from "./Footer"
-import MathJax from "./MathJax"
+import { Provider } from "./KaTeX"
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -21,9 +21,9 @@ const Layout = ({ children }) => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
         <Container>
-          <MathJax.Provider>
+          <Provider>
             <main>{children}</main>
-          </MathJax.Provider>
+          </Provider>
           <Footer/>
         </Container>
       </>
