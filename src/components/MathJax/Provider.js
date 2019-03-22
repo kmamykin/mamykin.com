@@ -8,7 +8,7 @@ const MathJaxScriptSrc = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/M
 
 // http://docs.mathjax.org/en/latest/options/output-processors/index.html
 const MathJaxOptions = {
-  // jax: ["input/TeX", "output/SVG"],
+  // jax: ["input/TeX", "output/SVG"], // since the math is rendered client side having SVGs in the page would not help with importing the article to medium.com anyway
   jax: ["input/TeX", "output/CommonHTML"], // <- use CommonHTML and not SVG for \tag rendered to be responsive (move as the width of the page changes)
   extensions: ["tex2jax.js", "MathMenu.js", "MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js",],
   tex2jax: {
@@ -72,7 +72,7 @@ class Provider extends React.Component {
       if (this.props.didFinishTypeset) {
         this.props.didFinishTypeset()
       }
-      // console.log(MathJax)
+      console.log("Typeset Ended", MathJax)
     })
     MathJax.Hub.Register.MessageHook("Math Processing Error", message => {
       this.props.onError(new Error(message))
@@ -82,8 +82,8 @@ class Provider extends React.Component {
     //   const script = jax.SourceElement()
     //   console.log('New Math', message, jax, script, MathJax)
     // })
-    // MathJax.Hub.Startup.signal.Interest(message => {console.log("Startup: ", message)})
-    // MathJax.Hub.signal.Interest(message => {console.log("Hub: ", message)})
+    MathJax.Hub.Startup.signal.Interest(message => {console.log("Startup: ", message)})
+    MathJax.Hub.signal.Interest(message => {console.log("Hub: ", message)})
     if (this.props.onLoad) {
       this.props.onLoad()
     }
