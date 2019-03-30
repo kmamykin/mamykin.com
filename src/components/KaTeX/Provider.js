@@ -1,8 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
-// import loadScript from "load-script"
 
-class DefaultProvider extends React.Component {
+export default class extends React.Component {
   render() {
     return (
       <div>
@@ -11,4 +9,3 @@ class DefaultProvider extends React.Component {
     )
   }
 }
-export default DefaultProvider

@@ -44,7 +44,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 2. Two 
 3. Three
 
-## MathJax test
+## Math test
 
 Some formula inline $E(a*X + b) = a*E(X) + b$
 
@@ -59,27 +59,49 @@ $m$ bins according to a total nonsense $x_i \sim N(\mu, \sigma^2)$.
 
 In physics, the mass-energy equivalence is stated by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 
+This display math is not using `\begin{equation}` and just wraps display math in `$$...$$`
+$$ 
+E=mc^2
+\tag{1}
+\label{eq:einstein}
+$$
+
+This math uses `\begin{aligned}` (environment defined in KeTex)
+$$ 
+\begin{aligned}
+    E=mc^2
+    \tag{1a}
+\end{aligned}
+$$
+
+This math uses `\begin{align}` (environment defined in LaTex but not in KeTex)
+$$ 
+\begin{align}
+    E=mc^2
+    \tag{1b}
+\end{align}
+$$
+
+This math uses `\begin{equation}` (not defined in KeTex)
 $$ 
 \begin{equation}
-    E=m^2
-    \label{eq:einstein}
+    E=mc^2
+    \tag{1c}
 \end{equation}
 $$
 
-References to equation $\eqref{eq:einstein}$ doe not work: MathJax node processing is hidden in @nteract/mathjax Node class 
-with no way to hook into that processing. However, setting `skipStartupTypeset: true` in MathJax options seems to 
-prevent the first auto-typesetting when the script loads and $\eqref{eq:eq2}$ seems to work again 
-(ref displayed but clicking the link breaks MathJax on the page). `\eqref` is not usable.
-AMS automatic equation numbering also does not quite work as it is stateful (MathJax remembers tags and labels),
-but React component render multiple times breaking MathJax with error that same label is already defined.
-The only option is manual taging with `\tag{1}` command. No automatic links with `\eqref` work.
+References to equation by label look like this `$\eqref{eq:einstein}$`: $\eqref{eq:einstein}$ and `$\ref{eq:einstein}$` $\ref{eq:einstein}$. 
+Automatic numbering of equations is not available, the only option is to manually tag with `\tag{1}` command. 
 
-Regular ([ref to Einstein](#mjx-eqn-2)) references have to use `#mjx-eqn-2` links
+Regular ([link to Einstein equation](#eq:einstein)) has to use `#eq:einstein` href. Regular link to tagged equations
+[link to equation by tag](#1a)
+
+This equation somehow give trouble parsing...
 
 $$
 \begin{equation}
-    \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
-    \label{eq:eq2}
+    \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15} 
+    \tag{2}
 \end{equation}
 $$
 
