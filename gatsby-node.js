@@ -10,7 +10,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNode, createParentChildLink } = actions
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `content/` })
+    const slug = createFilePath({ node, getNode, basePath: `posts/` })
     const postNode = {
       id: `${node.id} >>> Post`,
       parent: node.id,
@@ -40,7 +40,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       child: postNode
     })
   } else if (node.internal.type === `JupyterNotebook`) {
-    const slug = createFilePath({ node, getNode, basePath: `content/` })
+    const slug = createFilePath({ node, getNode, basePath: `posts/` })
     const postNode = {
       id: `${node.id} >>> Post`,
       parent: node.id,
