@@ -8,6 +8,7 @@ export default ({ data }) => {
   const post = data.post
   return (
     <Layout>
+      {post.frontmatter.title && <h1>{post.frontmatter.title}</h1>}
       <div>
         {post.content.type === "Notebook" && (
           <Notebook notebook={JSON.parse(post.content.notebook)} />

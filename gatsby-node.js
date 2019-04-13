@@ -12,13 +12,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   if (["MarkdownRemark", "JupyterNotebook"].includes(node.internal.type)) {
     const filePath = createFilePath({ node, getNode, basePath: "posts" })
     const defaultPath = `/posts${filePath}`
-    console.log(`filePath: ${filePath}`)
     const postNode = {
       id: `${node.id} >>> Post`,
       parent: node.id,
       children: [],
       frontmatter: {
-        title: node.frontmatter.title || defaultPath,
+        title: node.frontmatter.title,
         permalink: node.frontmatter.permalink || defaultPath,
         date: node.frontmatter.date,
         author: node.frontmatter.author,
@@ -65,7 +64,7 @@ exports.createPages = async ({ graphql, actions }) => {
   results.data.allPost.edges.forEach(({ node }) => {
     actions.createPage({
       path: node.frontmatter.permalink,
-      component: path.resolve(`./src/templates/blog-post.js`),
+      component: path.resolve(`./src/templates/post.js`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
