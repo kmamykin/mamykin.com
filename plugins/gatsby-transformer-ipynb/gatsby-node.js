@@ -30,10 +30,6 @@ exports.onCreateNode = async ({ actions, loadNodeContent, node }) => {
     },
     frontmatter,
   }
-
-  console.log(
-    `Creating ipynb node with frontmatter: ${JSON.stringify(frontmatter)}`
-  )
   createNode(ipynbNode)
   createParentChildLink({ parent: node, child: ipynbNode })
 }

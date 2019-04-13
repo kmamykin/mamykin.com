@@ -4,7 +4,6 @@ title: "Using Prism.js with webpack and react.js"
 date: "2018-07-27"
 tags: 
   - markdown
-published: true
 ---
 
 ## Introduction 

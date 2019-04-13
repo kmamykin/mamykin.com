@@ -18,7 +18,7 @@ export default ({ data }) => (
     {data.allPost.edges.map(({ node }) => (
       <div key={node.id}>
         <Link
-          to={node.frontmatter.path}
+          to={node.frontmatter.permalink}
           css={css`text-decoration: none; color: inherit;`}
         >
           <h3 css={css`margin-bottom: ${rhythm(1 / 4)};`}>
@@ -42,10 +42,11 @@ export const query = graphql`
         node {
           id
           frontmatter {
+            permalink
             title
-            slug
-            path
+            author
             date(formatString: "DD MMMM, YYYY")
+            tags
           }
           content {
             excerpt

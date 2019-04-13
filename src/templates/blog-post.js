@@ -4,7 +4,6 @@ import Layout from "../components/Layout"
 import Notebook from "../components/Notebook"
 import Markdown from "../components/Markdown"
 
-// const Notebook = (props) => <div></div>
 export default ({ data }) => {
   const post = data.post
   return (
@@ -22,20 +21,19 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    post(frontmatter: { slug: { eq: $slug } }) {
-      parent {
-        id
+  query($permalink: String!) {
+    post(frontmatter: { permalink: { eq: $permalink } }) {
+      frontmatter {
+        permalink
+        title
+        author
+        date
+        tags
       }
       content {
         type
         markdown
         notebook
-      }
-      frontmatter {
-        title
-        slug
-        path
       }
     }
   }

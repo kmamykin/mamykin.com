@@ -17,8 +17,8 @@ const allContentImages = graphql`
   query {
     allFile(
       filter: {
-        extension: { regex: "/(jpeg|jpg|png)/" }
-        sourceInstanceName: { eq: "content" }
+        extension: { regex: "/jpg|jpeg|png/" }
+        sourceInstanceName: { eq: "posts" }
       }
     ) {
       edges {

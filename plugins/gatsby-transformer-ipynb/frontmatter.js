@@ -6,11 +6,10 @@ function getFrontmatter(notebook) {
     R.applySpec({
       permalink: R.prop('permalink'),
       title: R.prop('title'),
-      date: R.prop('date'),
       author: R.prop('author'),
-      categories: R.propOr([''], 'categories'),
+      date: R.prop('date'),
       tags: R.propOr([''], 'tags'),
-      published: R.propOr(true, 'published'),
+      draft: R.propOr(false, 'draft'),
     }),
     R.pickBy((v, k) => !R.isNil(v))
   )(notebook)
