@@ -21,6 +21,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         permalink: node.frontmatter.permalink || defaultPath,
         date: node.frontmatter.date,
         author: node.frontmatter.author,
+        image: node.frontmatter.image,
         tags: node.frontmatter.tags || [],
       },
       content:
