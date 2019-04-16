@@ -3,6 +3,8 @@ module.exports = {
     title: `Kliment Mamykin blog`,
     description: `Personal website and blog`,
     author: `Kliment Mamykin`,
+    site: `https://mamykin.com`,
+    disqusShortname: `mamykin-com`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

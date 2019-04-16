@@ -6,18 +6,23 @@ import Layout from "../components/Layout"
 import Notebook from "../components/Notebook"
 import Markdown from "../components/Markdown"
 import Image from "../components/Image"
+import DisqusThread from "../components/DisqusThread"
 
-const CoverImage = ({src}) => (
-  <div css={css`margin-bottom: ${rhythm(1)};`}>
-    <Image src={src}/>
+const CoverImage = ({ src }) => (
+  <div
+    css={css`
+      margin-bottom: ${rhythm(1)};
+    `}
+  >
+    <Image src={src} />
   </div>
 )
 export default ({ data }) => {
-  const { post } = data
+  const { site, post } = data
   return (
     <Layout>
       {post.frontmatter.title && <h1>{post.frontmatter.title}</h1>}
-      {post.frontmatter.image && <CoverImage src={post.frontmatter.image}/>}
+      {post.frontmatter.image && <CoverImage src={post.frontmatter.image} />}
       <div>
         {post.content.type === "Notebook" && (
           <Notebook notebook={JSON.parse(post.content.notebook)} />
@@ -26,12 +31,24 @@ export default ({ data }) => {
           <Markdown markdown={post.content.markdown} />
         )}
       </div>
+      <DisqusThread
+        disqusShortname={site.siteMetadata.disqusShortname}
+        url={site.siteMetadata.site + post.frontmatter.permalink}
+        identifier={post.frontmatter.permalink}
+        title={post.frontmatter.title}
+      />
     </Layout>
   )
 }
 
 export const query = graphql`
   query($permalink: String!) {
+    site {
+      siteMetadata {
+        site
+        disqusShortname
+      }
+    }
     post(frontmatter: { permalink: { eq: $permalink } }) {
       frontmatter {
         permalink
