@@ -43,14 +43,14 @@
   ],
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf public/* .cache",
+    "clean": "rm -rf public .cache",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "deploy": "gatsby build && gh-pages -d public -b gh-pages"
+    "deploy": "yarn run clean && gatsby build && gh-pages -d public -b gh-pages"
   },
   "repository": {
     "type": "git",
