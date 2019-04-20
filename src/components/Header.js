@@ -5,6 +5,19 @@ import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import Headroom from "react-headroom"
 import Container from "./Container"
+import avatarSrc from "../images/avatar-48x48.png"
+
+const avatarCss = css`
+  height: 100%;
+  width: 100%;
+  background-image: url(${avatarSrc});
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+`
+const Avatar = ({ src }) => (
+  <div css={avatarCss}></div>
+)
 
 const Header = ({ siteTitle }) => (
   <Headroom
@@ -15,28 +28,23 @@ const Header = ({ siteTitle }) => (
     }}
   >
     <Container>
-      <div
-        css={css`
-          padding: 0.75rem 0;
-        `}
-      >
-        <h2
-          css={css`
-            margin: 0;
-          `}
-        >
-          <Link
-            to="/"
-            css={css`
+      <div css={css`display: flex;`}>
+        <div css={css` padding: 0.75rem 0; flex: 1 1 0;`}>
+          <h2 css={css` margin: 0; `}>
+            <Link
+              to="/"
+              css={css`
               text-decoration: none;
               text-shadow: none;
               background-image: none;
               color: white;
             `}
-          >
-            {siteTitle}
-          </Link>
-        </h2>
+            >
+              {siteTitle}
+            </Link>
+          </h2>
+        </div>
+        <div css={css`width: 48px; height: 48px; align-self: center;`}><Avatar/></div>
       </div>
     </Container>
   </Headroom>
