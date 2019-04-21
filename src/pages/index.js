@@ -37,7 +37,7 @@ const PostCard = ({ node }) => (
 export default ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    {data.allPost.edges.map(({ node }) => (
+    {data.allPost.edges.filter(({ node }) => (!node.frontmatter.draft || process.env.NODE_ENV === 'development')).map(({ node }) => (
       <PostCard node={node}/>
     ))}
   </Layout>
@@ -56,6 +56,7 @@ export const query = graphql`
             author
             date(formatString: "DD MMMM, YYYY")
             tags
+            draft
           }
           content {
             excerpt
