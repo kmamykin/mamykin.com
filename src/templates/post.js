@@ -33,7 +33,7 @@ export default ({ data }) => {
       </div>
       <DisqusThread
         disqusShortname={site.siteMetadata.disqusShortname}
-        url={site.siteMetadata.site + post.frontmatter.permalink}
+        url={site.siteMetadata.siteUrl + post.frontmatter.permalink}
         identifier={post.frontmatter.permalink}
         title={post.frontmatter.title}
       />
@@ -45,7 +45,7 @@ export const query = graphql`
   query($permalink: String!) {
     site {
       siteMetadata {
-        site
+        siteUrl
         disqusShortname
       }
     }

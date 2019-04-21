@@ -3,8 +3,8 @@ module.exports = {
     title: `Kliment Mamykin blog`,
     description: `Personal website and blog`,
     author: `Kliment Mamykin`,
-    site: `https://mamykin.com`,
-    disqusShortname: `mamykin-com`
+    siteUrl: `http://mamykin.com`,
+    disqusShortname: `mamykin-com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -62,6 +62,7 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     'gatsby-plugin-offline',
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
