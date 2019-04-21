@@ -4,7 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const path = require(`path`)
-const crypto = require("crypto")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -23,6 +22,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         author: node.frontmatter.author,
         image: node.frontmatter.image,
         tags: node.frontmatter.tags || [],
+        draft: node.frontmatter.draft || false,
       },
       content:
         node.internal.type === `MarkdownRemark`
@@ -56,6 +56,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             frontmatter {
               permalink
+              draft
             }
           }
         }
@@ -63,14 +64,16 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   results.data.allPost.edges.forEach(({ node }) => {
-    actions.createPage({
-      path: node.frontmatter.permalink,
-      component: path.resolve(`./src/templates/post.js`),
-      context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        permalink: node.frontmatter.permalink,
-      },
-    })
+    if (!node.frontmatter.draft || process.env.NODE_ENV === 'development') {
+      actions.createPage({
+        path: node.frontmatter.permalink,
+        component: path.resolve(`./src/templates/post.js`),
+        context: {
+          // Data passed to context is available
+          // in page queries as GraphQL variables.
+          permalink: node.frontmatter.permalink,
+        },
+      })
+    }
   })
 }
