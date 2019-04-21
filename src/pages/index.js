@@ -38,7 +38,7 @@ export default ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     {data.allPost.edges.filter(({ node }) => (!node.frontmatter.draft || process.env.NODE_ENV === 'development')).map(({ node }) => (
-      <PostCard node={node}/>
+      <PostCard key={node.id} node={node}/>
     ))}
   </Layout>
 )
