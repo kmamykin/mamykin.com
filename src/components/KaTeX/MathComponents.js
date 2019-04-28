@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import {
   InlineMath as KaTeXInlineMath,
@@ -56,6 +56,54 @@ export class InlineMath extends React.Component {
   }
 }
 
+const TaggedBlock = ({ tag, children }) => (
+  <div css={css`position: relative;`}>
+    {tag && (
+      <div
+        id={`${tag}`}
+        css={css`
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+              `}
+      >
+        <span>{`(${tag})`}</span>
+      </div>
+    )}
+    { children }
+  </div>
+)
+
+const ViewSource = ({ children }) => {
+  const [expanded, setExpanded] = useState(false)
+  const downPointingTriangle = '▼'
+  const rightPointingTriangle = '▶'
+  return (
+    <div css={css`margin-bottom: 1em;`}>
+      <div css={css`display: flex; align-items: center;`} >
+        <span css={css`font-size: 0.5em; margin-right: 4px;`}>
+          {expanded ? downPointingTriangle : rightPointingTriangle}
+        </span>
+        <a href="javascript:void(0)" onClick={() => setExpanded(!expanded)}>
+          <span>View Source</span>
+        </a>
+      </div>
+      {
+        expanded && (
+          <div css={css`padding: 0.5em; background: #ECF4F8;`}>
+            <pre css={css`margin-bottom: 0; overflow-x: auto;`}>
+              {children}
+            </pre>
+          </div>
+        )
+      }
+    </div>
+  )
+}
+
 export class BlockMath extends React.Component {
   static propTypes = {
     math: PropTypes.string.isRequired,
@@ -69,27 +117,13 @@ export class BlockMath extends React.Component {
     )({ math: this.props.math })
     const labelOrTag = label || tag
     return (
-      <div
-        css={css`
-          position: relative;
-        `}
-      >
-        {labelOrTag && (
-          <div
-            id={`${labelOrTag}`}
-            css={css`
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              right: 0;
-              display: flex;
-              align-items: center;
-            `}
-          >
-            <span>{`(${tag})`}</span>
-          </div>
-        )}
-        <KaTeXBlockMath math={math} />
+      <div>
+        <TaggedBlock tag={labelOrTag}>
+          <KaTeXBlockMath math={math} />
+        </TaggedBlock>
+        <ViewSource>
+          {this.props.math}
+        </ViewSource>
       </div>
     )
   }
