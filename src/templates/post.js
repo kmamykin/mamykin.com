@@ -31,12 +31,16 @@ export default ({ data }) => {
           <Markdown markdown={post.content.markdown} />
         )}
       </div>
-      <DisqusThread
-        disqusShortname={site.siteMetadata.disqusShortname}
-        url={site.siteMetadata.siteUrl + post.frontmatter.permalink}
-        identifier={post.frontmatter.permalink}
-        title={post.frontmatter.title}
-      />
+      {
+        process.env.NODE_ENV === 'production' && (
+          <DisqusThread
+            disqusShortname={site.siteMetadata.disqusShortname}
+            url={site.siteMetadata.siteUrl + post.frontmatter.permalink}
+            identifier={post.frontmatter.permalink}
+            title={post.frontmatter.title}
+          />
+        )
+      }
     </Layout>
   )
 }
