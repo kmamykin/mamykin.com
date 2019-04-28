@@ -38,7 +38,7 @@ const Image = ({ alt, title, src }) => (
   <StaticQuery
     query={allContentImages}
     render={data => {
-      const foundImage = data.allFile.edges.map(n => n.node).find(n => n.relativePath === src)
+      const foundImage = data.allFile.edges.map(n => n.node).find(n => n.relativePath.endsWith(src))
       if (foundImage) {
         return <Img fluid={foundImage.childImageSharp.fluid} Tag={'div'}/>
       } else {
